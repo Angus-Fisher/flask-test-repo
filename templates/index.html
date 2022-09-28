@@ -1,0 +1,42 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+	<h1>Expenses</h1>
+	
+
+	<ul>
+	{% for expense in expenses %}
+		<li>{{expense.name}} {{expense.amount}}</li>
+
+	{% endfor %} 
+	</ul>
+
+	<form method="POST">
+		{{ template_form.hidden_tag() }}
+		<p>
+		{{template_form.name.label}}
+		{{template_form.name}}
+		{{template_form.amount.label}}
+		{{template_form.amount}}
+		{{template_form.submit}}
+		</p>
+	</form>
+
+	{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+	<br>
+	<br>
+	<a href='{{ url_for("logout") }}'>Logout</a>
+
+
+{% endblock %}
