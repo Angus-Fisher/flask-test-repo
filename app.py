@@ -20,6 +20,7 @@ login.login_view = 'login'
 #imports route logic and db models from speerate files
 import routes, models
 
+db.create_all()
+
 if __name__ == "__main__":
 	app.run()
-	db.create_all()
